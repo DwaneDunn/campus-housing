@@ -44,7 +44,7 @@ if ( ! function_exists( 'campus_housing_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'campus-housing' ),
+			'menu-1' => esc_html__( 'Header Menu', 'campus-housing' ),
 		) );
 
 		/*
@@ -198,9 +198,17 @@ function campus_housing_scripts() {
 
 	wp_enqueue_style( 'campus-housing-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'campus-housing-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'campus-housing-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), time(), true );
 
-	wp_enqueue_script( 'campus-housing-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+//	wp_enqueue_script( 'campus-housing-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
+
+
+	wp_localize_script( 'campus-housing-navigation', 'campus_housingScreenReaderText', array(
+		'expand' => __( 'Expand child menu', 'campus_housing' ),
+		'collapse' => __( 'Collapse child menu', 'campus_housing' ),
+	) );
+
+	wp_enqueue_script( 'campus-housing-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), time(), true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
