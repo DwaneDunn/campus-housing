@@ -79,6 +79,16 @@ if ( ! function_exists( 'campus_housing_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+
+		add_theme_support( 'custom-logo', array(
+			'width' => 90,
+			'height' => 90,
+			'flex-width' => true,
+		) );
+
+
+
 	}
 endif;
 add_action( 'after_setup_theme', 'campus_housing_setup' );
