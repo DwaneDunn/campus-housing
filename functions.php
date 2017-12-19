@@ -84,6 +84,50 @@ endif;
 add_action( 'after_setup_theme', 'campus_housing_setup' );
 
 /**
+ * Register custom fonts.
+ *
+ * Borrowed from TwentySeventeen
+ */
+function campus_housing_fonts_url() {
+	$fonts_url = '';
+
+	/*
+	 * Translators: If there are characters in your language that are not
+	 * supported by Merriweather and Roboto Slab, translate this to 'off'. Do not translate
+	 * into your own language.
+	 *
+	 * https://fonts.googleapis.com/css?family=Merriweather+Sans:400,400i,700,700i|Roboto+Slab:400,700
+	 */
+	$merriweather = _x( 'on', 'Merriweahter font: on or off', 'campus_housing' );
+	$roboto_slab = _x( 'on', 'Roboto Slab font: on or off', 'campus_housing' );
+
+	$font_families = array();
+
+	if ( 'off' !== $merriweather ) {
+		$font_families[] = 'Merriweahter :400,400i,700,700i';
+	}
+
+	if ( 'off' !== $roboto_slab ) {
+		$font_families[] = 'Roboto Slab:400,700';
+	}
+
+	if ( in_array( 'on', array( $merriweather, $roboto_slab ) ) ) {
+
+		$query_args = array(
+			'family' => urlencode( implode( '|', $font_families ) ),
+			'subset' => urlencode( 'latin,latin-ext' ),
+		);
+
+		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+	}
+
+	return esc_url_raw( $fonts_url );
+}
+
+
+
+
+/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.
@@ -118,9 +162,8 @@ add_action( 'widgets_init', 'campus_housing_widgets_init' );
  */
 function campus_housing_scripts() {
 	// Enqueue Google Fonts: Merriweather Sans and Roboto Slab
-//	https://fonts.googleapis.com/css?family=Merriweather+Sans:400,400i,700,700i|Roboto+Slab:400,700
 
-	wp_enqueue_style(  'campus-housing-fonts', 'https://fonts.googleapis.com/css?family=Merriweather+Sans:400,400i,700,700i|Roboto+Slab:400,700');
+	wp_enqueue_style(  'campus-housing-fonts', campus_housing_fonts_url() );
 
 	wp_enqueue_style( 'campus-housing-style', get_stylesheet_uri() );
 

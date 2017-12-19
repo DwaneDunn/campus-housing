@@ -267,7 +267,7 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: sans-serif;
+	font-family: "Roboto Slab", Georgia, Cambria, "Times New Roman", Times, serif;
 	font-size: 16px;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -275,6 +275,7 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
 	clear: both;
+	font-family: "Merriweather Sans", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
 }
 
 p {
