@@ -27,7 +27,7 @@
 
 <!--    Wrap figure element around a linked header image using Header Image Display Tag-->
 
-    <?php if( get_header_image_tag() ) : ?>
+    <?php if( get_header_image_tag() && is_front_page() ) : ?>
 
 	    <figure class="header-image">
 
