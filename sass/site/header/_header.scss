@@ -1,4 +1,14 @@
+.header-image {
 
+	max-height: 40vh;
+	overflow: hidden;
+
+	img {
+		display: block;
+		width: 100vw;
+	}
+
+}
 .site-header {
 	position: relative;
 	padding: 1em;
