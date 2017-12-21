@@ -16,42 +16,21 @@ if ( ! function_exists( 'campus_housing_setup' ) ) :
 	 * as indicating support for post thumbnails.
 	 */
 	function campus_housing_setup() {
-		/*
-		 * Make theme available for translation.
-		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Campus Housing, use a find and replace
-		 * to change 'campus-housing' to the name of your theme in all the template files.
-		 */
+
 		load_theme_textdomain( 'campus-housing', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
-		/*
-		 * Let WordPress manage the document title.
-		 * By adding theme support, we declare that this theme does not use a
-		 * hard-coded <title> tag in the document head, and expect WordPress to
-		 * provide it for us.
-		 */
 		add_theme_support( 'title-tag' );
 
-		/*
-		 * Enable support for Post Thumbnails on posts and pages.
-		 *
-		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-		 */
 		add_theme_support( 'post-thumbnails' );
 
-		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Header Menu', 'campus-housing' ),
-			'menu-2' => esc_html__( 'Social Media Menu', 'campus-housing' ),
+			'header-menu-primary' => esc_html__( 'Header Menu', 'campus-housing' ),
+			'footer-menu-social' => esc_html__( 'Footer Social Media Menu', 'campus-housing' ),
 		) );
 
-		/*
-		 * Switch default core markup for search form, comment form, and comments
-		 * to output valid HTML5.
-		 */
 		add_theme_support( 'html5', array(
 			'search-form',
 			'comment-form',
@@ -60,20 +39,13 @@ if ( ! function_exists( 'campus_housing_setup' ) ) :
 			'caption',
 		) );
 
-		// Set up the WordPress core custom background feature.
 		add_theme_support( 'custom-background', apply_filters( 'campus_housing_custom_background_args', array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
 
-		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
-		/**
-		 * Add support for core custom logo.
-		 *
-		 * @link https://codex.wordpress.org/Theme_Logo
-		 */
 		add_theme_support( 'custom-logo', array(
 			'height'      => 250,
 			'width'       => 250,
@@ -81,14 +53,11 @@ if ( ! function_exists( 'campus_housing_setup' ) ) :
 			'flex-height' => true,
 		) );
 
-
 		add_theme_support( 'custom-logo', array(
 			'width' => 90,
 			'height' => 90,
 			'flex-width' => true,
 		) );
-
-
 
 	}
 endif;
@@ -106,8 +75,6 @@ function campus_housing_fonts_url() {
 	 * Translators: If there are characters in your language that are not
 	 * supported by Merriweather and Roboto Slab, translate this to 'off'. Do not translate
 	 * into your own language.
-	 *
-	 * https://fonts.googleapis.com/css?family=Merriweather+Sans:400,400i,700,700i|Roboto+Slab:400,700
 	 */
 	$merriweather = _x( 'on', 'Merriweahter font: on or off', 'campus_housing' );
 	$roboto_slab = _x( 'on', 'Roboto Slab font: on or off', 'campus_housing' );
@@ -156,9 +123,6 @@ function campus_housing_resource_hints( $urls, $relation_type ) {
 }
 add_filter( 'wp_resource_hints', 'campus_housing_resource_hints', 10, 2 );
 
-
-
-
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
@@ -201,8 +165,7 @@ function campus_housing_scripts() {
 
 	wp_enqueue_script( 'campus-housing-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), time(), true );
 
-//	wp_enqueue_script( 'campus-housing-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
-
+																												//	array( 'jquery' ), '20151215', true
 
 	wp_localize_script( 'campus-housing-navigation', 'campus_housingScreenReaderText', array(
 		'expand' => __( 'Expand child menu', 'campus_housing' ),

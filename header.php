@@ -11,12 +11,11 @@
 
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="no-svg">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-
 	<?php wp_head(); ?>
 </head>
 
@@ -24,27 +23,15 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'campus-housing' ); ?></a>
 
-
-<!--    Wrap figure element around a linked header image using Header Image Display Tag-->
-
     <?php if( get_header_image_tag() && is_front_page() ) : ?>
 
 	    <figure class="header-image">
-
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-
 	            <?php the_header_image_tag(); ?>
-
             </a>
-
         </figure> <!-- .header-image -->
 
-
-    <?php endif; ?> <!-- if( get_the_header_image_tag() ) : -->
-
-
-
-
+    <?php endif; ?>
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
@@ -67,15 +54,14 @@
                 <?php
                 endif; ?>
 
-            </div>
-
-		</div><!-- .site-branding -->
+            </div> <!-- .site-branding__text -->
+		</div> <!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'campus-housing' ); ?></button>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'campus-housing' ); ?></button>
 			<?php
 				wp_nav_menu( array(
-					'theme_location' => 'menu-1',
+					'theme_location' => 'header-menu-primary',
 					'menu_id'        => 'primary-menu',
 				) );
 			?>
