@@ -143,3 +143,62 @@ function campus_housing_post_thumbnail() {
 	<?php endif; // End is_singular().
 }
 endif;
+
+
+/**
+ * Returns true if a blog has more than 1 category.
+ *
+ * @return bool
+ */
+function campus_housing_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'campus_housing_categories' ) ) ) {
+		// Create an array of all the categories that are attached to posts.
+		$all_the_cool_cats = get_categories( array(
+			'fields'     => 'ids',
+			'hide_empty' => 1,
+			// We only need to know if there is more than one category.
+			'number'     => 2,
+		) );
+
+		// Count the number of categories that are attached to the posts.
+		$all_the_cool_cats = count( $all_the_cool_cats );
+
+		set_transient( 'campus_housing_categories', $all_the_cool_cats );
+	}
+
+	if ( $all_the_cool_cats > 1 ) {
+		// This blog has more than 1 category so campus_housing_categorized_blog should return true.
+		return true;
+	} else {
+		// This blog has only 1 category so campus_housing_categorized_blog should return false.
+		return false;
+	}
+}
+
+/**
+ * Flush out the transients used in campus_housing_categorized_blog.
+ */
+function campus_housing_category_transient_flusher() {
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+	// Like, beat it. Dig?
+	delete_transient( 'campus_housing_categories' );
+}
+add_action( 'edit_category', 'campus_housing_category_transient_flusher' );
+add_action( 'save_post',     'campus_housing_category_transient_flusher' );
+
+
+/**
+ * Post navigation (previous / next post) for single posts.
+ */
+function campus_housing_post_navigation() {
+	the_post_navigation( array(
+		'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'campus_housing' ) . '</span> ' .
+		               '<span class="screen-reader-text">' . __( 'Next post:', 'campus_housing' ) . '</span> ' .
+		               '<span class="post-title">%title</span>',
+		'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'campus_housing' ) . '</span> ' .
+		               '<span class="screen-reader-text">' . __( 'Previous post:', 'campus_housing' ) . '</span> ' .
+		               '<span class="post-title">%title</span>',
+	) );
+}
