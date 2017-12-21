@@ -644,9 +644,7 @@ a:hover, a:active {
 .comment-content:before,
 .comment-content:after,
 .site-content:before,
-.site-content:after,
-.site-footer:before,
-.site-footer:after {
+.site-content:after {
 	content: "";
 	display: table;
 	table-layout: fixed;
@@ -655,8 +653,7 @@ a:hover, a:active {
 .clear:after,
 .entry-content:after,
 .comment-content:after,
-.site-content:after,
-.site-footer:after {
+.site-content:after {
 	clear: both;
 }
 
@@ -973,12 +970,14 @@ button.dropdown-toggle {
 	color: #fff;
 	background-color: #002254;
 	text-align: center;
+	/* a */
 }
 
 .site-footer a {
 	font-weight: 700;
 	color: white;
 	text-decoration: none;
+	/* hover, focus */
 }
 
 .site-footer a:hover, .site-footer a:focus {
@@ -1017,9 +1016,9 @@ button.dropdown-toggle {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	-webkit-box-pack: start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
 	-ms-flex-wrap: wrap;
 	    flex-wrap: wrap;
 	list-style-type: none;
