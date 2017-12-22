@@ -67,7 +67,7 @@
 
 
 
-        
+
     <?php
         campus_housing_post_navigation();
 
