@@ -202,3 +202,21 @@ function campus_housing_post_navigation() {
 		               '<span class="post-title">%title</span>',
 	) );
 }
+
+
+/**
+ * Customize ellipsis at the end of excerpts.
+ */
+
+function campus_housing_excerpt_more( $more ) {
+    return "...";
+}
+add_filter( 'excerpt_more', 'campus_housing_excerpt_more'  );
+
+/**
+ * Filter excerpt length to 100 words
+ */
+function campus_housing_excerpt_length( $length ) {
+    return 100;
+}
+add_filter( 'excerpt_length', 'campus_housing_excerpt_length' );

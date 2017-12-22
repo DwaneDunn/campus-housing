@@ -31,10 +31,13 @@
 
 	</header><!-- .entry-header -->
 
-	<?php campus_housing_post_thumbnail(); ?>
+    <?php if ( has_post_thumbnail() ) {?>
+        <figure class="featured-image full-bleed">
+            <?php campus_housing_post_thumbnail( 'campus_housing-full-bleed' ); ?>
+        </figure> <!-- .featured-image .full-bleed -->
+    <?php }  ?>
 
     <section class="post-content">
-
         <?php if ( !is_active_sidebar( 'sidebar-1' ) ) : ?>
             <div class="post-content__wrap">
                 <div class="entry-meta">
