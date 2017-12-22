@@ -40,7 +40,7 @@ if ( ! function_exists( 'campus_housing_posted_on' ) ) :
 
     // Show Number of Comments
 		if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-			echo ' <span class="comments-link">';
+			echo ' <span class="comments-link"><span class="extra">Discussion </span>';
 			comments_popup_link(
 				sprintf(
 					wp_kses(
@@ -72,7 +72,7 @@ if ( ! function_exists( 'campus_housing_posted_on' ) ) :
 				),
 				get_the_title()
 			),
-			'<span class="edit-link">',
+			'<span class="edit-link"><span class="extra">Admin</span>',
 			'</span>'
 		);
 

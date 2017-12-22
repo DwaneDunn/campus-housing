@@ -22,17 +22,27 @@
 		endif;
 
 		if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-		<div class="entry-meta">
-			<?php campus_housing_posted_on(); ?>
-		</div><!-- .entry-meta -->
-		<?php
-		endif; ?>
+
+            <div class="entry-meta">
+            <?php campus_housing_posted_on(); ?>
+            </div><!-- .entry-meta -->
+
+		<?php endif; ?>
 
 	</header><!-- .entry-header -->
 
 	<?php campus_housing_post_thumbnail(); ?>
 
     <section class="post-content">
+
+        <?php if ( !is_active_sidebar( 'sidebar-1' ) ) : ?>
+            <div class="post-content__wrap">
+                <div class="entry-meta">
+                <?php campus_housing_posted_on(); ?>
+                </div><!-- .entry-meta -->
+                    <div class="post-content__body">
+        <?php endif; ?>
+
         <div class="entry-content">
             <?php
                 the_content( sprintf(
@@ -55,18 +65,14 @@
             ?>
         </div><!-- .entry-content -->
 
-
-
-
-
 	<footer class="entry-footer">
 		<?php campus_housing_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 
-
-
-
-
+    <?php if ( !is_active_sidebar( 'sidebar-1' ) ) : ?>
+                    </div> <!-- .post-content__body-->
+            </div> <!-- .post-content__wrap -->
+    <?php endif; ?>
 
     <?php
         campus_housing_post_navigation();
