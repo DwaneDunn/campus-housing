@@ -47,4 +47,30 @@
 
 		endif; ?>
 	</div><!-- .page-content -->
+    <div>
+	    <?php
+	    if ( is_404() || is_search() ) {
+		    ?>
+            <h2 class="page-title secondary-title"><?php esc_html_e( '6 Most recent posts:', 'humescores' ); ?></h2>
+		    <?php
+		    // Get the 6 latest posts
+		    $args = array(
+			    'posts_per_page' => 6
+		    );
+		    $latest_posts_query = new WP_Query( $args );
+		    // The Loop
+		    if ( $latest_posts_query->have_posts() ) {
+			    while ( $latest_posts_query->have_posts() ) {
+				    $latest_posts_query->the_post();
+				    // Get the standard index page content
+				    get_template_part( 'template-parts/content', get_post_format() );
+			    }
+		    }
+		    /* Restore original Post Data */
+		    wp_reset_postdata();
+	    } // endif
+	    ?>
+    </div>
+
+
 </section><!-- .no-results -->

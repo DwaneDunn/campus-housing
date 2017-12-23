@@ -10,7 +10,6 @@
 get_header(); ?>
 
     <?php if ( have_posts() ) : ?>
-
         <header class="page-header">
             <h1 class="page-title"><?php
                 /* translators: %s: search query. */
@@ -18,7 +17,12 @@ get_header(); ?>
                 ?></h1>
         </header><!-- .page-header -->
 
-    <?php endif; ?>
+    <?php
+        else :
+            get_template_part( 'template-parts/content', 'none' );
+            return;
+        endif;
+    ?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main">
@@ -39,11 +43,11 @@ get_header(); ?>
 
 			endwhile;
 
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
+			the_posts_pagination( array(
+				'prev_text' => __( 'Newer', 'campus-housing' ),
+				'next_text' => __( 'Older', 'campus-housing' ),
+				'before_page_number' => '<span class="screen-reader-text">' . __( 'Page ', 'campus-housing' ) . '</span>',
+			) );
 
 		endif; ?>
 

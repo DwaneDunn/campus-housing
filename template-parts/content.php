@@ -18,7 +18,7 @@
             </a>
         </figure> <!-- .featured-image .index-image -->
 	<?php }  ?>
-    
+
     <div class="post__content">
         <header class="entry-header">
             <?php
