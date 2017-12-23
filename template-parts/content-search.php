@@ -10,23 +10,40 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php campus_housing_posted_on(); ?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+	<?php if ( has_post_thumbnail() ) { ?>
+        <figure class="featured-image index-image">
+            <a href="<?php esc_url( get_permalink() ) ?>" rel="bookmark">
+				<?php the_post_thumbnail( 'campus_housing-index-img' ); ?>
+            </a>
+        </figure> <!-- .featured-image .index-image -->
+	<?php }  ?>
 
-	<?php campus_housing_post_thumbnail(); ?>
+    <div class="post__content">
+        <header class="entry-header">
+            <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
+            <?php if ( 'post' === get_post_type() ) : ?>
+            <div class="entry-meta">
+                <?php campus_housing_posted_on(); ?>
+            </div><!-- .entry-meta -->
+            <?php endif; ?>
+        </header><!-- .entry-header -->
 
-	<footer class="entry-footer">
-		<?php campus_housing_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+        <div class="entry-summary">
+            <?php
+                the_excerpt();
+
+                wp_link_pages( array(
+                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'campus-housing' ),
+                    'after'  => '</div>',
+                ) );
+            ?>
+        </div><!-- .entry-summary -->
+
+        <footer class="entry-footer">
+            <?php campus_housing_entry_footer(); ?>
+        </footer><!-- .entry-footer -->
+
+    </div> <!-- .post__content -->
 </article><!-- #post-<?php the_ID(); ?> -->
