@@ -42,19 +42,29 @@
 
         <div class="entry-content">
             <?php
-                the_content( sprintf(
-                    wp_kses(
-                        /* translators: %s: Name of current post. Only visible to screen readers */
-                        __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'campus-housing' ),
-                        array(
-                            'span' => array(
-                                'class' => array(),
-                            ),
-                        )
-                    ),
-                    get_the_title()
-                ) );
 
+            $length_setting = get_theme_mod( 'length_setting' );
+
+            if ( 'full-content' === $length_setting ) {
+
+	            the_content( sprintf(
+		            wp_kses(
+		            /* translators: %s: Name of current post. Only visible to screen readers */
+			            __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'campus-housing' ),
+			            array(
+				            'span' => array(
+					            'class' => array(),
+				            ),
+			            )
+		            ),
+		            get_the_title()
+	            ) );
+
+            } else {
+
+                the_excerpt();
+
+            }
                 wp_link_pages( array(
                     'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'campus-housing' ),
                     'after'  => '</div>',
